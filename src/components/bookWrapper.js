@@ -10,9 +10,9 @@ const BookWrapper = () => {
       id: Date.now(), name: book, catogary: choice, author: 'Charles Dickens',
     }]);
   };
-  // const deleteBook = (id) => {
-  //   setBooks(books.filter((book) => book.id !== id));
-  // };
+  const deleteBook = (id) => {
+    setBooks(books.filter((book) => book.id !== +id));
+  };
   return (
     <div className="bookRoute">
       <div className="booksWrapperChild">
@@ -22,7 +22,8 @@ const BookWrapper = () => {
             bookCatogary={book.catogary}
             bookName={book.name}
             bookAuthor={book.author}
-
+            bookId={book.id}
+            deleteBook={deleteBook}
           />
         ))}
       </div>

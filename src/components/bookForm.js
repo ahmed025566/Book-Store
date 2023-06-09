@@ -17,7 +17,7 @@ const BookForm = ({ addBook }) => {
           type="text"
           className="bookName"
           value={value}
-          placeholder="Add new book"
+          placeholder="Book Title"
           onChange={(e) => setValue(e.target.value)}
         />
         <select className="catogary" onChange={(e) => setChoice(e.target.value)}>

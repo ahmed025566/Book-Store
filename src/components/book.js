@@ -3,7 +3,7 @@ import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import './book.css';
 
 const Book = ({
-  bookCatogary, bookName, bookAuthor,
+  bookCatogary, bookName, bookAuthor, bookId, deleteBook,
 }) => (
   <div className="book">
     <div className="bookData">
@@ -15,7 +15,7 @@ const Book = ({
       <div className="bookDataSecond">
         <button type="button" className="comments">Comments</button>
         <div className="line" />
-        <button type="button" className="remove">Remove</button>
+        <button type="button" className="remove" onClick={() => deleteBook(bookId)}>Remove</button>
         <div className="line" />
         <button type="button" className="edit">Edit</button>
       </div>

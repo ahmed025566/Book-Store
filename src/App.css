@@ -2,10 +2,10 @@ body {
   background-color: #fafafa;
   overflow-x: hidden;
 }
+
 .header {
   width: 100vw;
   height: 70px;
-  
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -18,11 +18,10 @@ body {
 
 a {
   text-decoration: none;
-  opacity: .5;
+  opacity: 0.5;
   color: #121212;
   margin-left: 50px;
   font-size: 20px;
-  
 }
 
 .active {
