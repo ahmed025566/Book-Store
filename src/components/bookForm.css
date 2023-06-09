@@ -1,0 +1,42 @@
+.bookForm {
+    margin-bottom: 30px;
+}
+.formTitle {
+    color: #888;
+    font-family: Montserrat;
+    font-size: 1.25rem;
+    margin-left: 100px;
+}
+.inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+}
+.bookName{
+    width: 500px;
+    height: 40px;
+    color:  #c4c4c4;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.catogary {
+    height: 40px;
+    width: 250px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #c4c4c4;
+    border-radius: 5px;
+   
+}
+.submit-btn {
+    background-color: #0290ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+    height: 40px;
+   
+}
