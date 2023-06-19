@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { NavLink, Route, Routes } from 'react-router-dom';
 import './App.css';
+import { VscAccount } from 'react-icons/vsc';
+import BookWrapper from './components/bookWrapper';
+import Catogries from './components/catogries';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="header">
+        <h1 className="logo">Bookstore CMS</h1>
+        <nav className="navMenu">
+          <NavLink to="/">Books</NavLink>
+          <NavLink to="/catogries">Catogries</NavLink>
+        </nav>
+        <VscAccount className="account" />
       </header>
+      <Routes>
+        <Route path="/" element={<BookWrapper />} />
+        <Route path="/catogries" element={<Catogries />} />
+      </Routes>
     </div>
   );
 }
