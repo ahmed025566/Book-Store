@@ -1,34 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import BookForm from './bookForm';
 import Book from './book';
 import './booksWrapper.css';
 
 const BookWrapper = () => {
-  const [books, setBooks] = useState([]);
-  const addBook = (book, choice) => {
-    setBooks([...books, {
-      id: Date.now(), name: book, catogary: choice, author: 'Charles Dickens',
-    }]);
-  };
-  const deleteBook = (id) => {
-    setBooks(books.filter((book) => book.id !== +id));
-  };
+  const { books } = useSelector((state) => state.books);
   return (
     <div className="bookRoute">
       <div className="booksWrapperChild">
         {books.map((book) => (
           <Book
-            key={book.id}
-            bookCatogary={book.catogary}
-            bookName={book.name}
+            key={book.item_id}
+            bookCatogary={book.category}
+            bookName={book.title}
             bookAuthor={book.author}
-            bookId={book.id}
-            deleteBook={deleteBook}
+            bookId={book.item_id}
+
           />
         ))}
       </div>
       <div className="devider2" />
-      <BookForm addBook={addBook} />
+      <BookForm />
     </div>
   );
 };
