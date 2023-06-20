@@ -34,6 +34,7 @@
   color: #c4c4c4;
   border-radius: 5px;
 }
+
 .bookAuthor {
   height: 40px;
   width: 250px;
@@ -42,6 +43,7 @@
   color: #c4c4c4;
   border-radius: 5px;
 }
+
 .submit-btn {
   background-color: #0290ff;
   color: white;
