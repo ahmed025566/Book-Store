@@ -17,6 +17,7 @@ const BookForm = () => {
       author: author.current.value,
       category: category.current.value,
     }));
+    setTimeout(() => window.location.reload(), 200);
     title.current.value = '';
     author.current.value = '';
     title.current.focus();
@@ -45,6 +46,7 @@ const BookForm = () => {
           <option className="catogaryItem" value="soical">soical</option>
         </select>
         <Button className="submit-btn" label="ADD BOOK" onclick={handleSubmit} />
+
       </div>
     </form>
   );
