@@ -1,40 +1,67 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
+const API_ID = 'Sl91FwmfHqeWxC6TXsdA';
+const BOOKS_URL = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${API_ID}/books`;
+
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
+  try {
+    const response = await axios.get(BOOKS_URL);
+
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+export const addBook = createAsyncThunk('books/addBook', async (payload) => {
+  try {
+    await axios.post(BOOKS_URL, payload);
+
+    return payload;
+  } catch (error) {
+    return error.message;
+  }
+});
+
+export const removeBook = createAsyncThunk('books/removeBook', async (id) => {
+  try {
+    axios.delete(`${BOOKS_URL}/${id}`);
+    return id;
+  } catch (error) {
+    return error.message;
+  }
+});
 const initialState = {
-  books: [
-    {
-      item_id: 'item1',
-      title: 'The Great Gatsby',
-      author: 'John Smith',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item2',
-      title: 'Anna Karenina',
-      author: 'Leo Tolstoy',
-      category: 'Fiction',
-    },
-    {
-      item_id: 'item3',
-      title: 'The Selfish Gene',
-      author: 'Richard Dawkins',
-      category: 'Nonfiction',
-    },
-  ],
+  books: [],
+  loading: false,
+  erorr: '',
 };
 
 const bookSlice = createSlice({
   name: 'book',
   initialState,
-  reducers: {
-    addBook: (state, action) => {
-      state.books.push(action.payload);
-    },
-    removeBook: (state, action) => {
-      state.books = state.books.filter((book) => book.item_id !== action.payload);
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.loading = true;
+      })
+      .addCase(fetchBooks.fulfilled, (state, { payload }) => {
+        const data = Object.values(payload);
+        const ids = Object.keys(payload);
+        for (let i = 0; i < data.length; i += 1) {
+          data[i][0].id = ids[i];
+        }
+        state.books.push(data);
+
+        state.loading = false;
+      })
+      .addCase(fetchBooks.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.erorr = payload;
+      });
   },
+
 });
 
-export const { addBook, removeBook } = bookSlice.actions;
 export default bookSlice.reducer;

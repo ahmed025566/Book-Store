@@ -20,7 +20,14 @@ const Book = ({
         <div className="bookDataSecond">
           <button type="button" className="comments">Comments</button>
           <div className="line" />
-          <Button onclick={() => dispatch(removeBook(bookId))} label="Remove" className="remove" />
+          <Button
+            onclick={() => {
+              dispatch(removeBook(bookId));
+              setTimeout(() => window.location.reload(), 200);
+            }}
+            label="Remove"
+            className="remove"
+          />
           <div className="line" />
           <button type="button" className="edit">Edit</button>
         </div>
